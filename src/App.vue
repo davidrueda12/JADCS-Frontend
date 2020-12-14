@@ -34,6 +34,7 @@
 
 <!-- Representa el js (Comportamiento) -->
 <script>
+
 export default {
   name: "App",
   components: {},
@@ -68,10 +69,10 @@ export default {
     this.$router.push({ name: "user", params: { username: "camilo24" } });
   },
 };
-</script>
 
-<!-- Representa el css (Estilo) -->
+
 <style>
+
 body {
   margin: 0 0 0 0;
 }
@@ -134,5 +135,14 @@ nav button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+=======
+#Perfil {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+
 }
 </style>
