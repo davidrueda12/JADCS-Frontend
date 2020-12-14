@@ -19,6 +19,13 @@
             </button>
           </td>
         </tr>
+        <tr>
+          <td>
+            <button v-on:click="agregar_doc" v-if="is_auth">
+              Agregar Documento
+            </button>
+          </td>
+        </tr>
       </table>
     </nav>
 
