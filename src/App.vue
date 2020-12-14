@@ -69,7 +69,7 @@ export default {
     this.$router.push({ name: "user", params: { username: "camilo24" } });
   },
 };
-
+</script>
 
 <style>
 
@@ -135,7 +135,8 @@ nav button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-=======
+  }
+
 #Perfil {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -143,6 +144,6 @@ nav button:hover {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-
 }
+
 </style>
