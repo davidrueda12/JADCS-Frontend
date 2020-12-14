@@ -1,23 +1,37 @@
 <template>
   <div id="app">
+    <h1>JADCS</h1>
+        <nav>
+          <button v-on:click="init" v-if="is_auth" > Perfil </button>
+        </nav>
     <img src="./assets/logo.png">
-    <HelloWorld/>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import PerfilUsuario from "./components/PerfilUsuario"
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  
+  name: 'Perfil',
+  components: {PerfilUsuario},
+    data: function(){
+      return {
+        is_auth: localStorage.getItem('{usuario}') || false
+    }
+  },
+  methods: {
+  },
+  beforeCreate: function(){
+    localStorage.setItem('current_username', '{usuario}')
+    localStorage.setItem('isAuth', true)
   }
 }
 </script>
 
 <style>
-#app {
+#Perfil {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
