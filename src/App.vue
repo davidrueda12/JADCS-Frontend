@@ -5,34 +5,42 @@
       <img id="logo" src="./assets/JADCSlogo.png" />
     </div>
 
-    <nav>
-      <table class="menu">
-        <tr>
-          <td>
-            <button v-on:click="init" v-if="is_auth">Inicio</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button v-on:click="resumen_usuario" v-if="is_auth">
-              Resumen Usuario
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button v-on:click="agregar_doc" v-if="is_auth">
-              Agregar Documento
-            </button>
-          </td>
-        </tr>
-      </table>
-    </nav>
-
-    <div class="main-component">
-      <router-view> </router-view>
-    </div>
-
+    <table id="tComponentes">
+      <tr>
+        <td>
+          <nav>
+            <table>
+              <tr>
+                <td>
+                  <button v-on:click="init" v-if="is_auth">Inicio</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button v-on:click="resumen_usuario" v-if="is_auth">
+                    Resumen Usuario
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button v-on:click="agregar_doc" v-if="is_auth">
+                    Agregar Documento
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </nav>
+        </td>
+        <td>
+          <div class="main-component">
+            <!--<router-view> </router-view> -->
+            <listaDoc />
+            <agregarDoc />
+          </div>
+        </td>
+      </tr>
+    </table>
     <div class="footer">
       <h2>Todos los derechos reservados</h2>
     </div>
@@ -41,9 +49,14 @@
 
 <!-- Representa el js (Comportamiento) -->
 <script>
+import AgregarDoc from "./components/agregarDoc.vue";
+import listaDoc from "./components/listaDoc";
 export default {
   name: "App",
-  components: {},
+  components: {
+    AgregarDoc,
+    listaDoc,
+  },
   data: function () {
     return {
       is_auth: localStorage.getItem("isAuth") || false,
@@ -57,15 +70,8 @@ export default {
         this.$router.push({ name: "user", params: { username: username } });
       }
     },
-
-    getResumen: function () {
-      if (this.$route.name != "resumen") {
-        let username = localStorage.getItem("current_username");
-        this.$router.push({
-          name: "resumen",
-          params: { username: username },
-        });
-      }
+    agregar_doc: function () {
+      pass;
     },
   },
 
@@ -84,7 +90,6 @@ body {
 }
 
 .encabezado {
-  margin: 0 0 0 0;
   background: linear-gradient(
     90deg,
     rgb(0, 36, 19) 0%,
@@ -101,10 +106,6 @@ body {
   top: 10px;
 }
 
-nav {
-  padding: 3px;
-}
-
 nav button {
   width: 130px;
   color: rgb(1, 42, 23);
@@ -112,6 +113,7 @@ nav button {
   border: 1px solid #e5e7e9;
   border-radius: 5px;
   padding: 10px 20px;
+  margin-top: 50px;
 }
 
 nav button:hover {
@@ -122,9 +124,11 @@ nav button:hover {
 
 .main-component {
   height: 60vh;
-  margin: 0%;
+  margin-top: 20px;
+  margin-left: 40px;
   padding: 0%;
   background: #fdfefe;
+  color: black;
 }
 .footer {
   margin: 0;
@@ -133,6 +137,7 @@ nav button:hover {
   height: 10vh;
   min-height: 100px;
   background-color: rgba(9, 97, 121, 0.541);
+  color: rgb(29, 28, 28);
 }
 
 .footer h2 {
@@ -143,3 +148,4 @@ nav button:hover {
   align-items: center;
 }
 </style>
+
