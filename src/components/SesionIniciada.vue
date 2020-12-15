@@ -1,0 +1,28 @@
+<template>
+    <div>
+        <h1>Sesión iniciada </h1>
+        <h2>Bienvenido(a) <span> {{username}} </span> </h2>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "Sesion",
+        data:function(){
+            return {
+                username: ""
+        }
+        },
+         methods: {
+           
+         },
+
+        created: function(){
+            this.username = localStorage.getItem("current_username")            
+            },        
+    }
+</script>
+
+<style>
+
+</style>
