@@ -5,42 +5,35 @@
       <img id="logo" src="./assets/JADCSlogo.png" />
     </div>
 
-    <table id="tComponentes">
-      <tr>
-        <td>
-          <nav>
-            <table>
-              <tr>
-                <td>
-                  <button v-on:click="init" v-if="is_auth">Inicio</button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button v-on:click="resumen_usuario" v-if="is_auth">
-                    Resumen Usuario
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button v-on:click="agregar_doc" v-if="is_auth">
-                    Agregar Documento
-                  </button>
-                </td>
-              </tr>
-            </table>
-          </nav>
-        </td>
-        <td>
-          <div class="main-component">
-            <!--<router-view> </router-view> -->
-            <listaDoc />
-            <agregarDoc />
-          </div>
-        </td>
-      </tr>
-    </table>
+    <nav>
+      <table class="menu">
+        <tr>
+          <td>
+            <button v-on:click="iniciar">Iniciar sesión</button>
+          </td>
+          <td class="comp" rowspan="3">
+            <div class="main-component">
+              <router-view> </router-view>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button v-on:click="getResumen">
+              Resumen Usuario
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button v-on:click="agregar_doc">
+              Agregar Documento
+            </button>
+          </td>
+        </tr>        
+      </table>
+    </nav>
+
     <div class="footer">
       <h2>Todos los derechos reservados</h2>
     </div>
@@ -49,8 +42,13 @@
 
 <!-- Representa el js (Comportamiento) -->
 <script>
+
 import AgregarDoc from "./components/agregarDoc.vue";
 import listaDoc from "./components/listaDoc";
+import Perfil from "./components/Perfil";
+import Bienvenida from "./components/Bienvenida";
+import SesionIniciada from './components/SesionIniciada'
+
 export default {
   name: "App",
   components: {
@@ -59,28 +57,62 @@ export default {
   },
   data: function () {
     return {
-      is_auth: localStorage.getItem("isAuth") || false,
+      is_auth: localStorage.getItem('isAuth')
     };
   },
 
   methods: {
-    init: function () {
-      if (this.$route.name != "user") {
-        let username = localStorage.getItem("current_username");
-        this.$router.push({ name: "user", params: { username: username } });
+    iniciar: function () {
+      let auth = localStorage.getItem('is_Auth')
+      let sesion = auth.localeCompare(false)
+      if (sesion==0){
+        if(this.$route.name != "login"){
+          this.$router.push({name:"login"});
+        }
+      } else{
+        window.alert("Sesión ya iniciada")
       }
     },
     agregar_doc: function () {
       pass;
-    },
-  },
+      },
 
+    getResumen: function () {
+      if(this.$route.name != "perfil"){
+        let auth = localStorage.getItem('is_Auth')
+        let sesion = auth.localeCompare(true)
+        if (sesion==0){
+          let username = localStorage.getItem("current_username");
+          this.$router.push({
+            name: "perfil",
+            params: { username : username },
+          });
+        }else{
+          window.alert("No ha iniciado sesión")
+        }
+      }
+  
+    },
+    agregar_doc: function () {
+      if(this.$route.name != "agregardoc"){
+        let auth = localStorage.getItem('is_Auth')
+        let sesion = auth.localeCompare(true)
+        if (sesion==0){
+          let username = localStorage.getItem("current_username");
+          this.$router.push({ name: "agregardoc" });
+      }else{
+          window.alert("No ha iniciado sesión")
+        }
+      }
+    },
+  }, 
   beforeCreate: function () {
-    localStorage.setItem("current_username", "camilo24");
-    localStorage.setItem("isAuth", true);
-    this.$router.push({ name: "user", params: { username: "camilo24" } });
-  },
-};
+    localStorage.setItem('is_Auth', false)
+    localStorage.setItem("current_username", "camilo24")
+    this.$router.push({ name: "home"});
+  }    
+}
+
 </script>
 
 <!-- Representa el css (Estilo) -->
@@ -120,6 +152,17 @@ nav button:hover {
   color: #472834;
   background: #e5e7e9;
   border: 2px solid #e5e7e9;
+}
+
+.menu{
+  width: 100%;
+  background: #a0c28fca;
+  border: 1px solid #000000;
+  
+}
+
+.comp {
+  width: 85%;
 }
 
 .main-component {
