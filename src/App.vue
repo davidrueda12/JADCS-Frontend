@@ -154,6 +154,9 @@ nav button:hover {
 
 .menu{
   width: 100%;
+  background: #a0c28fca;
+  border: 1px solid #000000;
+  
 }
 
 .comp {

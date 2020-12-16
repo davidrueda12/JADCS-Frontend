@@ -1,7 +1,34 @@
 <template>
     <div id="Perfil">
-        <h2>Test <span>{{username}} </span></h2>
-        
+        <h2> PERFIL DEL USUARIO </h2>
+        <table>
+            <tr>
+                <td>Usuario:  </td>
+                <td> {{username}} </td>
+            </tr>
+            <tr>
+                <td>Nombre: </td>
+                <td>{{Nombre}}</td>
+             </tr>
+            <tr> 
+                <td> Apellido: </td>
+                <td> {{Apellido}} </td>
+            </tr>
+             <tr> 
+                <td> Categoria: </td>
+                <td> {{Categoria}} </td>
+            </tr>
+        </table>
+
+        <div v-if="esJefe">
+            <h3>Personal a cargo: </h3>
+            <h3>{{test}} </h3>
+            <ul>
+                <li v-for="(persona, index) in Equipo" :key="index">
+                    {{persona}}                   
+                </li>                    
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -11,23 +38,36 @@
         name: "Perfil",
         data:function(){
             return {
-                username: ""
+                username: "",
+                Nombre: "",
+                Apellido: "",
+                Categoria: "",
+                Equipo: "",
+                esJefe: this.esJefe
         }
         },
         
         created: function(){
             this.username = this.$route.params.username
-            // let self = this
-            // axios.get("https://software-jadcs.herokuapp.com/usuario/perfil/" + this.username)
-            // .then((result) => {
-            //     self.perfil = result.data.Perfil
-            //     self.nombre = self.perfil.Nombre
-            //     ...
+            let self = this
+            axios.get("http://127.0.0.1:8000/usuario/perfil/" + this.username)
+            .then((result) => {
+                self.perfil = result.data.Perfil
+                self.Nombre = self.perfil.Nombre
+                self.Apellido = self.perfil.Apellido
+                self.Categoria = self.perfil.Categoria
+                self.Equipo = self.perfil.Equipo
+                if (typeof self.Equipo=="object"){
+                    self.esJefe = true;
+                }else{
+                    self.esJefe = false
+                }
+                
 
-            // })
-            // .catch((error) => {
-            //     alert("ERROR Servidor");
-            // });        
+            })
+            .catch((error) => {
+                alert("ERROR Servidor");
+            });        
         }
     }
 </script>

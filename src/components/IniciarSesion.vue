@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Acá inicia sesion pepito </h1>
+        <h1>Acá se inicia sesion </h1>
         <button v-on:click="init">Iniciar sesión</button>
     </div>
 </template>
@@ -21,7 +21,7 @@
                     // let usuario = blablabla
                     // if usuario exite
                     //   if contraseña correcta
-                    localStorage.setItem("current_username","pepito");
+                    localStorage.setItem("current_username","batman");
                     localStorage.setItem('is_Auth', true)
                     this.$router.push({name:"sesionIn"});
                 }
