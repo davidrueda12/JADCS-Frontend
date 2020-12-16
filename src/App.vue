@@ -143,7 +143,7 @@ nav button:hover {
   background: #fdfefe;
 }
 .footer {
-  margin: 0;
+  margin: 0 0 0 0;
   padding: 0;
   width: 100%;
   height: 10vh;
@@ -159,12 +159,15 @@ nav button:hover {
   color: azure;
 }
 
-button {
-  height: 40px;
+.menu button {
+  height: 50px;
   width: 150px;
+  background-color: rgb(178, 190, 66);
+  color: white;
+  font-size: 16px;
 }
 
 .botones {
-  background-color: black;
+  margin: 0 0 0 0;
 }
 </style>

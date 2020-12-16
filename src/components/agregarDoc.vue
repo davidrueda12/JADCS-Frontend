@@ -48,7 +48,7 @@
         </td>
       </tr>
     </table>
-    <button v-on:click="agregarDocumento">Agregar Documento</button>
+    <button v-on:click="agregarDocumento" id="Agregar">Agregar</button>
   </div>
 </template>
 
@@ -120,10 +120,13 @@ export default {
   color: azure;
   box-shadow: 5px;
   margin-top: 25px;
-  position: relative;
-  left: 50%;
-  height: 30px;
   width: 150px;
+}
+
+#Agregar {
+  height: 60px;
+  position: relative;
+  left: 35%;
   border-radius: 5px;
 }
 </style>

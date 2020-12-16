@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import listaDoc from "./listaDoc";
 import axios from "axios";
 import ListaDoc from "./listaDoc.vue";
 export default {
@@ -85,6 +84,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  color: rgb(2, 71, 39);
 }
 .ListaDocumentos {
   margin-top: 20px;

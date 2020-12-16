@@ -27,7 +27,11 @@
       </table>
     </div>
     <div v-else>
-      <p>Holaaaaaaaaa</p>
+      <table id="TablaVacia">
+        <tr>
+          <th><h3>No tiene documentos asignados</h3></th>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -62,6 +66,17 @@ export default {
   border: 6px solid black;
   text-transform: capitalize;
   text-align: center;
+}
+
+#TablaVacia {
+  width: 700px;
+  text-align: left;
+}
+
+#TablaVacia th {
+  padding: 30px;
+  color: rgb(100, 167, 46);
+  font-size: 20px;
 }
 
 #TablaDocumentos th {
