@@ -19,18 +19,14 @@
         </tr>
         <tr>
           <td>
-            <button v-on:click="getResumen">
-              Resumen Usuario
-            </button>
+            <button v-on:click="getResumen">Resumen Usuario</button>
           </td>
         </tr>
         <tr>
           <td>
-            <button v-on:click="agregar_doc">
-              Agregar Documento
-            </button>
+            <button v-on:click="agregar_doc">Agregar Documento</button>
           </td>
-        </tr>        
+        </tr>
       </table>
     </nav>
 
@@ -42,77 +38,71 @@
 
 <!-- Representa el js (Comportamiento) -->
 <script>
-
 import AgregarDoc from "./components/agregarDoc.vue";
 import listaDoc from "./components/listaDoc";
 import Perfil from "./components/Perfil";
 import Bienvenida from "./components/Bienvenida";
-import SesionIniciada from './components/SesionIniciada'
+import SesionIniciada from "./components/SesionIniciada";
 
 export default {
   name: "App",
-  components: {
-    AgregarDoc,
-    listaDoc,
-  },
+  components: {},
   data: function () {
     return {
-      is_auth: localStorage.getItem('isAuth')
+      is_auth: localStorage.getItem("isAuth"),
     };
   },
 
   methods: {
     iniciar: function () {
-      let auth = localStorage.getItem('is_Auth')
-      let sesion = auth.localeCompare(false)
-      if (sesion==0){
-        if(this.$route.name != "login"){
-          this.$router.push({name:"login"});
+      let auth = localStorage.getItem("is_Auth");
+      let sesion = auth.localeCompare(false);
+      if (sesion == 0) {
+        if (this.$route.name != "login") {
+          this.$router.push({ name: "login" });
         }
-      } else{
-        window.alert("Sesión ya iniciada")
+      } else {
+        window.alert("Sesión ya iniciada");
       }
     },
     agregar_doc: function () {
       pass;
-      },
+    },
 
     getResumen: function () {
-      if(this.$route.name != "perfil"){
-        let auth = localStorage.getItem('is_Auth')
-        let sesion = auth.localeCompare(true)
-        if (sesion==0){
+      if (this.$route.name != "perfil") {
+        let auth = localStorage.getItem("is_Auth");
+        let sesion = auth.localeCompare(true);
+        if (sesion == 0) {
           let username = localStorage.getItem("current_username");
           this.$router.push({
             name: "perfil",
-            params: { username : username },
+            params: { username: username },
           });
-        }else{
-          window.alert("No ha iniciado sesión")
+        } else {
+          window.alert("No ha iniciado sesión");
         }
       }
-  
     },
     agregar_doc: function () {
-      if(this.$route.name != "agregardoc"){
-        let auth = localStorage.getItem('is_Auth')
-        let sesion = auth.localeCompare(true)
-        if (sesion==0){
+      if (this.$route.name != "agregardoc") {
+        let auth = localStorage.getItem("is_Auth");
+        let sesion = auth.localeCompare(true);
+        if (sesion == 0) {
           let username = localStorage.getItem("current_username");
           this.$router.push({ name: "agregardoc" });
-      }else{
-          window.alert("No ha iniciado sesión")
+        } else {
+          window.alert("No ha iniciado sesión");
         }
       }
     },
-  }, 
+  },
   beforeCreate: function () {
-    localStorage.setItem('is_Auth', false)
-    localStorage.setItem("current_username", "camilo24")
-    this.$router.push({ name: "home"});
-  }    
-}
-
+    localStorage.setItem("is_Auth", false);
+    localStorage.setItem("current_username", "camilo24");
+    this.$router.push({ name: "home" });
+  },
+};
 </script>
 
 <!-- Representa el css (Estilo) -->
@@ -154,11 +144,10 @@ nav button:hover {
   border: 2px solid #e5e7e9;
 }
 
-.menu{
+.menu {
   width: 100%;
   background: #a0c28fca;
   border: 1px solid #000000;
-  
 }
 
 .comp {
