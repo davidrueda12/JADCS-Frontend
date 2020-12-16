@@ -1,29 +1,34 @@
 <template>
   <div>
-    <table id="TablaDocumentos">
-      <tr>
-        <th>Número Radicado</th>
-        <th>Fecha de entrada</th>
-        <th>Fecha de vencimiento</th>
-        <th>Tipo de Documento</th>
-        <th>Status</th>
-        <th>Número de anexos</th>
-        <th id="oculta">Dias Restantes</th>
-      </tr>
-      <tr v-for="documento in lista_documentos">
-        <td>{{ documento.id_radicado }}</td>
-        <td>{{ documento.fecha_radicacion }}</td>
-        <td>{{ documento.fecha_vencimiento }}</td>
-        <td>{{ documento.tipo }}</td>
-        <td>{{ documento.status }}</td>
-        <td>{{ documento.anexos }}</td>
-        <td class="semaforo">
-          <p id="verde" v-if="documento.semaforo == 'verde'"></p>
-          <p id="amarillo" v-else-if="documento.semaforo == 'amarillo'"></p>
-          <p id="rojo" v-else-if="documento.semaforo == 'rojo'"></p>
-        </td>
-      </tr>
-    </table>
+    <div v-if="lista_documentos.length > 0">
+      <table id="TablaDocumentos">
+        <tr>
+          <th>Número Radicado</th>
+          <th>Fecha de entrada</th>
+          <th>Fecha de vencimiento</th>
+          <th>Tipo de Documento</th>
+          <th>Status</th>
+          <th>Número de anexos</th>
+          <th id="oculta">Dias Restantes</th>
+        </tr>
+        <tr v-for="documento in lista_documentos">
+          <td>{{ documento.id_radicado }}</td>
+          <td>{{ documento.fecha_radicacion }}</td>
+          <td>{{ documento.fecha_vencimiento }}</td>
+          <td>{{ documento.tipo }}</td>
+          <td>{{ documento.status }}</td>
+          <td>{{ documento.anexos }}</td>
+          <td class="semaforo">
+            <p id="verde" v-if="documento.semaforo == 'verde'"></p>
+            <p id="amarillo" v-else-if="documento.semaforo == 'amarillo'"></p>
+            <p id="rojo" v-else-if="documento.semaforo == 'rojo'"></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div v-else>
+      <p>Holaaaaaaaaa</p>
+    </div>
   </div>
 </template>
 
@@ -37,10 +42,10 @@ export default {
       lista_documentos: [],
     };
   },
-  beforeCreate() {
-    username: "camilo24";
+  created() {
+    let username = localStorage.getItem("current_username");
     axios
-      .get("http://127.0.0.1:8000/resumendoc/camilo24")
+      .get("http://127.0.0.1:8000/resumendoc/" + username)
       .then((response) => {
         this.lista_documentos = response.data;
       })

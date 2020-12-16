@@ -70,6 +70,7 @@ export default {
   },
   methods: {
     agregarDocumento: function () {
+      let username = localStorage.getItem("current_username");
       var tipoDoc = this.tipo;
       if (tipoDoc == 1) {
         tipoDoc = "derecho de peticion";
@@ -88,9 +89,12 @@ export default {
         anexos: this.Anexos,
       };
       axios
-        .post("http://127.0.0.1:8000/cargar/documento?nombre=camilo24", elJson)
+        .post(
+          "http://127.0.0.1:8000/cargar/documento?nombre=" + username,
+          elJson
+        )
         .then((response) => {
-          alert("Documento cargado en la lista de camilo24");
+          alert("Documento cargado en la lista de" + username);
         })
         .catch((err) => {
           console.log(err);

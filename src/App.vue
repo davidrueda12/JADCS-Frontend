@@ -5,45 +5,38 @@
       <img id="logo" src="./assets/JADCSlogo.png" />
     </div>
 
-    <nav>
-      <table class="menu">
-        <tr>
-          <td>
-            <button v-on:click="iniciar">Iniciar sesión</button>
-          </td>
-          <td class="comp" rowspan="3">
-            <div class="main-component">
-              <router-view> </router-view>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button v-on:click="getResumen">Resumen Usuario</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button v-on:click="agregar_doc">Agregar Documento</button>
-          </td>
-        </tr>
-      </table>
-    </nav>
+    <table class="menu">
+      <tr>
+        <td class="botones">
+          <button v-on:click="iniciar">Iniciar sesión</button>
+        </td>
+        <td class="comp" rowspan="3">
+          <div class="main-component">
+            <router-view> </router-view>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="botones">
+          <button v-on:click="getResumen">Resumen Usuario</button>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="botones">
+          <button v-on:click="agregar_doc">Agregar Documento</button>
+        </td>
+      </tr>
+    </table>
 
     <div class="footer">
-      <h2>Todos los derechos reservados</h2>
+      <h2>JADCS LTDA</h2>
     </div>
   </div>
 </template>
 
 <!-- Representa el js (Comportamiento) -->
 <script>
-import AgregarDoc from "./components/agregarDoc.vue";
-import listaDoc from "./components/listaDoc";
-import Perfil from "./components/Perfil";
-import Bienvenida from "./components/Bienvenida";
-import SesionIniciada from "./components/SesionIniciada";
-
 export default {
   name: "App",
   components: {},
@@ -52,7 +45,6 @@ export default {
       is_auth: localStorage.getItem("isAuth"),
     };
   },
-
   methods: {
     iniciar: function () {
       let auth = localStorage.getItem("is_Auth");
@@ -65,19 +57,15 @@ export default {
         window.alert("Sesión ya iniciada");
       }
     },
-    agregar_doc: function () {
-      pass;
-    },
-
     getResumen: function () {
       if (this.$route.name != "perfil") {
         let auth = localStorage.getItem("is_Auth");
         let sesion = auth.localeCompare(true);
         if (sesion == 0) {
-          let username = localStorage.getItem("current_username");
+          let theUsername = localStorage.getItem("current_username");
           this.$router.push({
             name: "perfil",
-            params: { username: username },
+            params: { username: theUsername },
           });
         } else {
           window.alert("No ha iniciado sesión");
@@ -99,19 +87,19 @@ export default {
   },
   beforeCreate: function () {
     localStorage.setItem("is_Auth", false);
-    localStorage.setItem("current_username", "camilo24");
+    localStorage.setItem("current_username", "batman");
     this.$router.push({ name: "home" });
   },
 };
+</script>
 
-
+<!-- Representa el css (Estilo) -->
 <style>
-
 body {
   margin: 0 0 0 0;
 }
-
 .encabezado {
+  margin: 0 0 0 0;
   background: linear-gradient(
     90deg,
     rgb(0, 36, 19) 0%,
@@ -120,14 +108,15 @@ body {
   height: 90px;
   padding: 0%;
 }
-
 #logo {
   width: 200px;
   position: relative;
   left: 42%;
   top: 10px;
 }
-
+nav {
+  padding: 3px;
+}
 nav button {
   width: 130px;
   color: rgb(1, 42, 23);
@@ -135,32 +124,23 @@ nav button {
   border: 1px solid #e5e7e9;
   border-radius: 5px;
   padding: 10px 20px;
-  margin-top: 50px;
 }
-
 nav button:hover {
   color: #472834;
   background: #e5e7e9;
   border: 2px solid #e5e7e9;
 }
-
 .menu {
   width: 100%;
-  background: #a0c28fca;
-  border: 1px solid #000000;
 }
-
 .comp {
   width: 85%;
 }
-
 .main-component {
   height: 60vh;
-  margin-top: 20px;
-  margin-left: 40px;
+  margin: 0%;
   padding: 0%;
   background: #fdfefe;
-  color: black;
 }
 .footer {
   margin: 0;
@@ -169,15 +149,22 @@ nav button:hover {
   height: 10vh;
   min-height: 100px;
   background-color: rgba(9, 97, 121, 0.541);
-  color: rgb(29, 28, 28);
 }
-
 .footer h2 {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: azure;
+}
+
+button {
+  height: 40px;
+  width: 150px;
+}
+
+.botones {
+  background-color: black;
 }
 </style>
-

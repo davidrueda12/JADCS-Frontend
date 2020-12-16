@@ -3,7 +3,7 @@ import Perfil from './components/Perfil'
 import Bienvenida from './components/Bienvenida'
 import IniciarSesion from './components/IniciarSesion'
 import SesionIniciada from './components/SesionIniciada'
-import AgregarDoc from './components/AgregarDoc'
+import AgregarDoc from './components/agregarDoc'
 import App from'./App'
 
 const router = new vueRouter({
@@ -43,5 +43,6 @@ const router = new vueRouter({
         },
     ]
 })
-        export default router
+
+export default router
 
